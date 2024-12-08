@@ -69,18 +69,39 @@ class Shell_emulator:
                     with self.tar_file.extractfile(member) as f:
                         a = f.readlines()
                         text = map(lambda x: x.decode('utf-8').strip()[::-1], a)
-                        print(list(text))
+                        self.log_action('rev', f'file:{file}')
                 else:
-                    print('is not a file')
+                    self.log_action('rev', f'failed.file:{file}')
             except KeyError:
-                print('Не найден в архиве')
+                self.log_action('rev', f'failed.file:{file}')
         else:
-            print(f'file {file} is not in directory')
+            self.log_action('rev', f'failed.file:{file}')
 
+    def log_action(self, action_type, details, user=0):
+        if user == 0:
+            user = self.computer_name
+        """Добавить действие в лог."""
+        action = {
+            "type": action_type,
+            "details": details,
+            "cwd": self.cwd,
+            "user": user
+        }
+        self.log_actions.append(action)
 
+        # Проверяем, существует ли CSV-файл; если нет, создаем его с заголовком
+        file_exists = os.path.exists(self.log_path)
+
+        # Сохранить логи в CSV файл
+        with open(self.log_path, 'a', newline='') as log_file:
+            writer = csv.DictWriter(log_file, fieldnames=["type", "details", "cwd", "user"])
+            if not file_exists:
+                writer.writeheader()  # Записываем заголовки, если файл создается впервые
+            writer.writerow(action)  # Добавляем запись
 a = Shell_emulator('config.csv')
 a.ls()
-a.rev('startup_script.txt')
+a.cd('another_directory')
+a.rev('test_file2.txt')
 
 
 
