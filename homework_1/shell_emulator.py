@@ -64,21 +64,23 @@ class Shell_emulator:
         if './' + full_path in self.files:
             try:
                 member = self.tar_file.getmember('./' + full_path)
-                print(f"Found member: {member.name}, is file: {member.isfile()}, is dir: {member.isdir()}")
-
                 # Убедимся, что это файл, а не директория
                 if member.isfile():
-                    with self.tar_file.extract(member) as f:
-                        print(f.read())
+                    with self.tar_file.extractfile(member) as f:
+                        a = f.readlines()
+                        text = map(lambda x: x.decode('utf-8').strip()[::-1], a)
+                        print(list(text))
+                else:
+                    print('is not a file')
             except KeyError:
                 print('Не найден в архиве')
-
+        else:
+            print(f'file {file} is not in directory')
 
 
 a = Shell_emulator('config.csv')
 a.ls()
-a.cd('some_directory')
-a.rev('some_file.txt')
-x
+a.rev('startup_script.txt')
+
 
 
