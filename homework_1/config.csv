@@ -1,0 +1,5 @@
+key,value
+computer.name,MyComputer
+filesystem.path,virtual_fs.tar
+startup.script,startup_script.txt
+logging.path,log_file.csv
