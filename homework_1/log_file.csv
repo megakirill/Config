@@ -3,3 +3,16 @@ rev,file:test_file2.txt,another_directory,MyComputer
 chown,Changed owner to Alice,another_directory,MyComputer
 rev,file:test_file2.txt,another_directory,MyComputer
 chown,Changed owner to Alice,another_directory,Alice
+cd,Changed directory to some_directory,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_file.txt,some_directory/invalid_file.txt,MyComputer
+rev,file:invalid_file.txt,some_directory,MyComputer
+cd,Changed directory to another_directory,another_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+rev,file:test_file.txt,some_directory,MyComputer
+chown,Changed owner to Alice,some_directory,Alice
+cd,Changed directory to another_directory,another_directory,MyComputer
+exit,Exiting shell.,/,MyComputer
+cd,Directory 'few' not found,/,MyComputer
+cd,Directory 'efwve' not found,/,MyComputer
