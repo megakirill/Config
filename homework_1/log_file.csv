@@ -1,3 +1,5 @@
 type,details,cwd,user
 rev,file:test_file2.txt,another_directory,MyComputer
+chown,Changed owner to Alice,another_directory,MyComputer
 rev,file:test_file2.txt,another_directory,MyComputer
+chown,Changed owner to Alice,another_directory,Alice

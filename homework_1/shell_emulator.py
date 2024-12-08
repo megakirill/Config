@@ -41,11 +41,12 @@ class Shell_emulator:
             new_path = os.path.join(self.cwd.rstrip('/'), path).replace('\\', '/')
             if any(file.startswith('./' + new_path) or file == new_path for file in self.files):
                 self.cwd = new_path
-                print(f"Changed directory to {self.cwd}")
+                details = f"Changed directory to {self.cwd}"
+                self.log_action('cd', details)
             else:
-                print(new_path)
-                print(f"Directory '{path}' not found")
-        print(self.cwd)
+                details = f"Directory '{path}' not found"
+                self.log_action('cd', details)
+
 
     def ls(self):
         if self.cwd == '/':
@@ -57,7 +58,8 @@ class Shell_emulator:
             if file.startswith(cwd_with_slash) and cwd_with_slash != file:
                 relative_path = file[len(cwd_with_slash):].split('/')[0]
                 items.add(relative_path)
-        print(items)
+        self.log_action('ls', f'ls')
+
 
     def rev(self, file):
         full_path = os.path.join(self.cwd.rstrip('/'), file).replace('\\', '/').lstrip('/')
@@ -98,10 +100,49 @@ class Shell_emulator:
             if not file_exists:
                 writer.writeheader()  # Записываем заголовки, если файл создается впервые
             writer.writerow(action)  # Добавляем запись
+
+    def chown(self, file_name, owner, group=None):
+        """Изменить владельца и группу для файла."""
+        full_path = os.path.join(self.cwd.rstrip('/'), file_name).replace('\\', '/').lstrip('/')
+        if not full_path.startswith('./'):
+            full_path = './' + full_path
+
+        if full_path in self.files:
+            try:
+                # Получаем член архива
+                member = self.tar_file.getmember(full_path)
+                # Проверяем, что это файл, а не директория
+                if member.isfile() or member.isdir():
+                    # Инициализируем структуру для хранения владельца и группы
+                    if not hasattr(self, 'file_ownership'):
+                        self.file_ownership = {}
+
+                    # Обновляем или добавляем запись о владельце и группе
+                    self.file_ownership[full_path] = {
+                        'owner': owner,
+                        'group': group
+                    }
+
+                    # Логируем действие
+                    details = f"Changed owner to {owner}" + (f", group to {group}" if group else "")
+                    self.log_action("chown", details, owner)
+
+                else:
+                    details = f"'{file_name}' is not a valid file or directory."
+                    self.log_action("chown", details)
+            except KeyError:
+                details = f"File '{file_name}' not found in the archive."
+                self.log_action("chown", details)
+        else:
+            details = f"File '{file_name}' not found in the current directory '{self.cwd}'."
+            self.log_action("chown", details)
+
+
 a = Shell_emulator('config.csv')
 a.ls()
 a.cd('another_directory')
 a.rev('test_file2.txt')
+a.chown('test_file2.txt', 'Alice')
 
 
 
