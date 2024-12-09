@@ -71,7 +71,7 @@ python shell_emulator.py
 ```
 
 #### Результаты ввода команд пользователем:
-![My Image](images/Scrin.PNG)
+![My Image](images/Scrin.png)
 
 #### Результаты тестирования:
 ![My Image](images/Scrin1.png)
