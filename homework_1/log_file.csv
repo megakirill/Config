@@ -16,3 +16,28 @@ cd,Changed directory to another_directory,another_directory,MyComputer
 exit,Exiting shell.,/,MyComputer
 cd,Directory 'few' not found,/,MyComputer
 cd,Directory 'efwve' not found,/,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Directory 'invalid_directory' not found,/,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+cd,Changed directory to some_directory/invalid_directory,some_directory/invalid_directory,MyComputer
+cd,Directory 'inv' not found,some_directory/invalid_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Directory 'pop_directory' not found,some_directory,MyComputer
