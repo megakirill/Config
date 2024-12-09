@@ -41,3 +41,9 @@ cd,Directory 'inv' not found,some_directory/invalid_directory,MyComputer
 cd,Changed directory to some_directory,some_directory,MyComputer
 rev,file:some_file.txt,some_directory,MyComputer
 cd,Directory 'pop_directory' not found,some_directory,MyComputer
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:test_file.txt,some_directory,MyComputer
+chown,Changed owner to Alice,some_directory,Alice
+cd,Changed directory to some_directory,some_directory,MyComputer
+rev,file:some_file.txt,some_directory,MyComputer
+cd,Directory 'pop_directory' not found,some_directory,MyComputer

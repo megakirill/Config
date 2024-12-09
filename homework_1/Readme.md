@@ -68,3 +68,10 @@
 
 ```bash
 python shell_emulator.py
+```
+
+#### Результаты ввода команд пользователем:
+![My Image](images/Scrin.PNG)
+
+#### Результаты тестирования:
+![My Image](images/Scrin1.png)
