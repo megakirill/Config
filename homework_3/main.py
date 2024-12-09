@@ -10,6 +10,7 @@ class ConfigTranslator:
     def parse_yaml(self, file_path):
         with open(file_path, 'r') as file:
             return yaml.safe_load(file)
+    #прикол
 
     def translate_value(self, value):
         if isinstance(value, int):
